@@ -25,14 +25,27 @@ color:black;
 font-size:18px;
 }
 
-section{
-padding:60px;
-max-width:900px;
-margin:auto;
+.hero{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
 }
 
-img{
+.hero img{
+max-width:900px;
 width:100%;
+height:auto;
+}
+
+.nombre{
+text-align:center;
+margin-top:20px;
+}
+
+.nombre h2{
+font-weight:normal;
+letter-spacing:1px;
 }
 
 </style>
@@ -46,6 +59,7 @@ width:100%;
 <h1>Carolina Hernández</h1>
 
 <nav>
+<a href="index.html">Inicio</a>
 <a href="obras.html">Obras</a>
 <a href="pedagogia.html">Pedagogía</a>
 <a href="trayectoria.html">Trayectoria</a>
@@ -54,16 +68,15 @@ width:100%;
 
 </header>
 
-<section>
+<section class="hero">
 
-<h2>Artista Visual</h2>
-
-<p>
-Carolina Hernández desarrolla su trabajo a través de la escultura,
-instalación, fotografía y proyectos pedagógicos.
-</p>
+<img src="images/material-obras/portafolio/OBRAS/proyeccion/proyeccion.jpg">
 
 </section>
+
+<div class="nombre">
+<h2>Artista Visual</h2>
+</div>
 
 </body>
 
