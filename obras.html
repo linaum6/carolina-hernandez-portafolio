@@ -6,115 +6,126 @@
 <title>Obras - Carolina Hernández</title>
 
 <style>
-
 body{
-font-family: Arial, sans-serif;
-margin:0;
-background:white;
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:white;
 }
 
 header{
-padding:40px;
-text-align:center;
+  padding:40px;
+  text-align:center;
 }
 
 nav a{
-margin:15px;
-text-decoration:none;
-color:black;
-font-size:18px;
+  margin:15px;
+  text-decoration:none;
+  color:black;
+  font-size:18px;
+}
+
+h2.titulo-galeria{
+  text-align:center;
+  font-weight:bold;
+  margin-top:40px;
+  margin-bottom:40px;
+  font-size:28px;
 }
 
 .galeria{
-display:grid;
-grid-template-columns: repeat(4, 1fr);
-gap:40px;
-padding:60px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:30px;
+  padding:0 60px 60px 60px;
 }
 
 .obra img{
-width:100%;
-height:250px;
-object-fit:cover;
+  width:100%;
+  max-height:200px; /* más pequeño que antes */
+  object-fit:cover;
+  border:1px solid #ddd;
+  border-radius:4px;
+  transition: transform 0.3s;
+}
+
+.obra img:hover{
+  transform: scale(1.05);
 }
 
 .obra p{
-text-align:center;
-margin-top:10px;
-font-size:16px;
+  text-align:center;
+  margin-top:10px;
+  font-size:16px;
+  font-weight:normal;
 }
 
 .obra a{
-text-decoration:none;
-color:black;
+  text-decoration:none;
+  color:black;
 }
-
 </style>
 
 </head>
-
 <body>
 
 <header>
-
-<h1>Carolina Hernández</h1>
-
-<nav>
-<a href="index.html">Inicio</a>
-<a href="obras.html">Obras</a>
-<a href="pedagogia.html">Pedagogía</a>
-<a href="trayectoria.html">Trayectoria</a>
-<a href="contacto.html">Contacto</a>
-</nav>
-
+  <h1>Carolina Hernández</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="obras.html">Obras</a>
+    <a href="pedagogia.html">Pedagogía</a>
+    <a href="trayectoria.html">Trayectoria</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
 </header>
+
+<h2 class="titulo-galeria">Obras</h2>
 
 <section class="galeria">
 
-<div class="obra">
-<a href="obra-plumillas.html">
-<img src="papel1.png">
-<p>5000 plumillas</p>
-</a>
-</div>
+  <div class="obra">
+    <a href="obra-plumillas.html">
+      <img src="papel1.png">
+      <p>5000 plumillas</p>
+    </a>
+  </div>
 
-<div class="obra">
-<a href="obra-piel.html">
-<img src="piel4.jpg">
-<p>Piel Artificial</p>
-</a>
-</div>
+  <div class="obra">
+    <a href="obra-piel.html">
+      <img src="piel4.jpg">
+      <p>Piel Artificial</p>
+    </a>
+  </div>
 
-<div class="obra">
-<a href="obra-escultura.html">
-<img src="escultura1.jpg">
-<p>Escultura</p>
-</a>
-</div>
+  <div class="obra">
+    <a href="obra-escultura.html">
+      <img src="escultura1.jpg">
+      <p>Escultura</p>
+    </a>
+  </div>
 
-<div class="obra">
-<a href="obra-480piezas.html">
-<img src="piezas1.jpg">
-<p>480 Piezas</p>
-</a>
-</div>
+  <div class="obra">
+    <a href="obra-480piezas.html">
+      <img src="piezas1.jpg">
+      <p>480 Piezas</p>
+    </a>
+  </div>
 
-<div class="obra">
-<a href="obra-fotografia.html">
-<img src="foto13.JPG">
-<p>Fotografía</p>
-</a>
-</div>
+  <div class="obra">
+    <a href="obra-fotografia.html">
+      <img src="foto13.JPG">
+      <p>Fotografía</p>
+    </a>
+  </div>
 
-<div class="obra">
-<a href="obra-ilustraciones.html">
-<img src="ilustracion2.jpg">
-<p>Ilustraciones</p>
-</a>
-</div>
+  <div class="obra">
+    <a href="obra-ilustraciones.html">
+      <img src="ilustracion2.jpg">
+      <p>Ilustraciones</p>
+    </a>
+  </div>
 
 </section>
 
 </body>
-
 </html>
