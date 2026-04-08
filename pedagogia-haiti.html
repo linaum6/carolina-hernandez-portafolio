@@ -31,10 +31,24 @@ section{
   margin:auto;
 }
 
+/* ✅ GALERIA 5 COLUMNAS */
 .galeria{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap:15px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 900px){
+  .galeria{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .galeria{
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .galeria img{
@@ -45,7 +59,6 @@ section{
   transition: transform 0.3s ease;
 }
 
-/* 👇 efecto hover pro */
 .galeria img:hover{
   transform: scale(1.05);
 }
@@ -58,7 +71,7 @@ section{
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.9);
-  display:flex;
+  display:none; /* 👈 importante */
   align-items:center;
   justify-content:center;
   z-index:999;
@@ -132,14 +145,11 @@ section{
   <img src="imagen6.JPG">
   <img src="imagen24.JPG">
   <img src="imagen21.JPG">
-  <!-- nuevas -->
   <img src="imagen15.JPG">
   <img src="imagen14.JPG">
   <img src="imagen18.JPG">
   <img src="imagen19.JPG">
-  
 </div>
-
 
 </section>
 
@@ -188,8 +198,14 @@ function mostrarImagen(index){
   }, 150);
 }
 
-/* INICIO AUTOMATICO */
-mostrarImagen(currentIndex);
+/* 👉 ABRIR AL HACER CLICK EN CUALQUIER IMAGEN */
+images.forEach((image, index) => {
+  image.addEventListener('click', () => {
+    currentIndex = index;
+    viewer.style.display = 'flex';
+    mostrarImagen(currentIndex);
+  });
+});
 
 /* BOTONES */
 next.onclick = () => {
@@ -204,9 +220,11 @@ prev.onclick = () => {
 
 /* TECLADO */
 document.addEventListener('keydown', (e) => {
-  if(e.key === 'ArrowRight') next.onclick();
-  if(e.key === 'ArrowLeft') prev.onclick();
-  if(e.key === 'Escape') viewer.style.display = 'none';
+  if(viewer.style.display === 'flex'){
+    if(e.key === 'ArrowRight') next.onclick();
+    if(e.key === 'ArrowLeft') prev.onclick();
+    if(e.key === 'Escape') viewer.style.display = 'none';
+  }
 });
 
 /* CERRAR */
