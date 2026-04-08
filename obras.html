@@ -25,31 +25,28 @@ color:black;
 font-size:18px;
 }
 
-section{
-padding:60px;
-max-width:1200px;
-margin:auto;
-}
-
 .galeria{
 display:grid;
-grid-template-columns:repeat(4, 1fr);
-gap:60px;
-margin-top:40px;
-}
-
-.obra{
-text-align:center;
+grid-template-columns: repeat(4, 1fr);
+gap:40px;
+padding:60px;
 }
 
 .obra img{
 width:100%;
-max-width:220px;
-height:auto;
+height:250px;
+object-fit:cover;
 }
 
 .obra p{
+text-align:center;
 margin-top:10px;
+font-size:16px;
+}
+
+.obra a{
+text-decoration:none;
+color:black;
 }
 
 </style>
@@ -72,14 +69,10 @@ margin-top:10px;
 
 </header>
 
-<section>
-
-<h2>Obras</h2>
-
-<div class="galeria">
+<section class="galeria">
 
 <div class="obra">
-<a href="obra-papeles.html">
+<a href="plumillas.html">
 <img src="papel1.png">
 <p>5000 plumillas</p>
 </a>
@@ -112,14 +105,12 @@ margin-top:10px;
 <p>Fotografía</p>
 </a>
 </div>
-  
+
 <div class="obra">
 <a href="obra-ilustraciones.html">
 <img src="ilustracion2.jpg">
 <p>Ilustraciones</p>
 </a>
-</div>  
-  
 </div>
 
 </section>
