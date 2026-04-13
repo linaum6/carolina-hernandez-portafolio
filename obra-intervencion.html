@@ -31,23 +31,102 @@ section{
   margin:auto;
 }
 
-.galeria img{
-  width:100%;
-  height:400px;
-  object-fit:contain;
-}
-
+/* TEXTO */
 .descripcion{
   margin-bottom:40px;
   line-height:1.6;
 }
 
+/* IMAGEN PRINCIPAL */
+.principal img{
+  width:100%;
+  max-height:400px;
+  object-fit:cover;
+  margin-bottom:40px;
+  cursor:pointer;
+}
+
+/* GALERIA */
+.galeria{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:15px;
+}
+
+.galeria img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  cursor:pointer;
+  transition: transform 0.3s ease;
+}
+
+.galeria img:hover{
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width:600px){
+  .galeria{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* VISOR */
+.viewer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.viewer img{
+  max-width:70%;
+  max-height:70%;
+}
+
+.boton{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+  padding:20px;
+}
+
+.prev{ left:20px; }
+.next{ right:20px; }
+
+.cerrar{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color:white;
+  cursor:pointer;
+}
+
+.contador{
+  position:absolute;
+  bottom:30px;
+  color:white;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
   font-size:12px;
   color:gray;
   padding:20px 0;
   border-top:1px solid #eee;
+  margin-top:40px;
 }
 
 </style>
@@ -81,15 +160,99 @@ Trabajo que aborda la intervención directa sobre espacios y superficies, genera
 </p>
 </div>
 
+<!-- IMAGEN PRINCIPAL -->
+<div class="principal">
+  <img src="intervencion2.png" alt="Intervención">
+</div>
+
+<!-- GALERIA -->
 <div class="galeria">
-<img src="intervencion1.png" alt="Intervención">
+  <img src="intervencion1.png" alt="Intervención">
+  <img src="intervencion3.png" alt="Intervención">
 </div>
 
 </section>
 
 <footer>
-Carolina Hernández Esguep- Artista Visual
+Carolina Hernández Esguep - Artista Visual
 </footer>
+
+<script>
+
+const images = document.querySelectorAll('.principal img, .galeria img');
+let currentIndex = 0;
+
+/* VISOR */
+const viewer = document.createElement('div');
+viewer.className = 'viewer';
+
+const img = document.createElement('img');
+
+const prev = document.createElement('div');
+prev.className = 'boton prev';
+prev.innerHTML = '←';
+
+const next = document.createElement('div');
+next.className = 'boton next';
+next.innerHTML = '→';
+
+const cerrar = document.createElement('div');
+cerrar.className = 'cerrar';
+cerrar.innerHTML = '✕';
+
+const contador = document.createElement('div');
+contador.className = 'contador';
+
+viewer.appendChild(img);
+viewer.appendChild(prev);
+viewer.appendChild(next);
+viewer.appendChild(cerrar);
+viewer.appendChild(contador);
+
+document.body.appendChild(viewer);
+
+/* MOSTRAR */
+function mostrarImagen(index){
+  img.src = images[index].src;
+  contador.innerText = (index + 1) + " / " + images.length;
+}
+
+/* CLICK */
+images.forEach((image, index) => {
+  image.addEventListener('click', () => {
+    currentIndex = index;
+    viewer.style.display = 'flex';
+    mostrarImagen(currentIndex);
+  });
+});
+
+/* BOTONES */
+next.onclick = () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  mostrarImagen(currentIndex);
+};
+
+prev.onclick = () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  mostrarImagen(currentIndex);
+};
+
+/* TECLADO */
+document.addEventListener('keydown', (e) => {
+  if(viewer.style.display === 'flex'){
+    if(e.key === 'ArrowRight') next.onclick();
+    if(e.key === 'ArrowLeft') prev.onclick();
+    if(e.key === 'Escape') viewer.style.display = 'none';
+  }
+});
+
+/* CERRAR */
+cerrar.onclick = () => viewer.style.display = 'none';
+viewer.onclick = (e) => {
+  if(e.target === viewer) viewer.style.display = 'none';
+};
+
+</script>
 
 </body>
 </html>
