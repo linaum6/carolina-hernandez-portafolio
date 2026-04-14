@@ -31,7 +31,6 @@ max-width:900px;
 margin:auto; 
 } 
 
-/* 👇 AQUÍ ESTÁ EL CAMBIO IMPORTANTE */ 
 .galeria{ 
 display: grid; 
 grid-template-columns: repeat(2, 1fr); 
@@ -108,7 +107,6 @@ Serie que explora la interacción entre la proyección de imágenes y objetos tr
 Carolina Hernández Esguep - Artista Visual 
 </footer> 
 
-<!-- 🔥 SOLO ESTO SE AGREGÓ -->
 <script>
 
 const images = document.querySelectorAll('.galeria img');
@@ -129,7 +127,31 @@ const img = document.createElement('img');
 img.style.maxWidth = '80%';
 img.style.maxHeight = '80%';
 
+/* FLECHAS */
+const prev = document.createElement('div');
+prev.innerHTML = '←';
+prev.style.position = 'absolute';
+prev.style.left = '20px';
+prev.style.top = '50%';
+prev.style.transform = 'translateY(-50%)';
+prev.style.fontSize = '40px';
+prev.style.color = 'white';
+prev.style.cursor = 'pointer';
+
+const next = document.createElement('div');
+next.innerHTML = '→';
+next.style.position = 'absolute';
+next.style.right = '20px';
+next.style.top = '50%';
+next.style.transform = 'translateY(-50%)';
+next.style.fontSize = '40px';
+next.style.color = 'white';
+next.style.cursor = 'pointer';
+
 viewer.appendChild(img);
+viewer.appendChild(prev);
+viewer.appendChild(next);
+
 document.body.appendChild(viewer);
 
 /* CLICK */
@@ -141,20 +163,23 @@ images.forEach((image, index) => {
   });
 });
 
+/* BOTONES */
+next.onclick = () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  img.src = images[currentIndex].src;
+};
+
+prev.onclick = () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  img.src = images[currentIndex].src;
+};
+
 /* TECLADO */
 document.addEventListener('keydown', (e) => {
   if(viewer.style.display === 'flex'){
-    if(e.key === 'ArrowRight'){
-      currentIndex = (currentIndex + 1) % images.length;
-      img.src = images[currentIndex].src;
-    }
-    if(e.key === 'ArrowLeft'){
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      img.src = images[currentIndex].src;
-    }
-    if(e.key === 'Escape'){
-      viewer.style.display = 'none';
-    }
+    if(e.key === 'ArrowRight') next.onclick();
+    if(e.key === 'ArrowLeft') prev.onclick();
+    if(e.key === 'Escape') viewer.style.display = 'none';
   }
 });
 
