@@ -1,177 +1,202 @@
-<!DOCTYPE html> 
-<html lang="es"> 
-<head> 
-<meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>Proyección sobre objeto - Carolina Hernández Esguep</title> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyección sobre objeto - Carolina Hernández Esguep</title>
 
-<style> 
+<style>
 
-body{ 
-font-family: Arial, sans-serif; 
-margin:0; 
-background:white; 
-} 
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:white;
+}
 
-header{ 
-padding:40px; 
-text-align:center; 
-} 
+header{
+  padding:40px;
+  text-align:center;
+}
 
-nav a{ 
-margin:15px; 
-text-decoration:none; 
-color:black; 
-font-size:18px; 
-} 
+nav a{
+  margin:15px;
+  text-decoration:none;
+  color:black;
+  font-size:18px;
+}
 
-section{ 
-padding:60px; 
-max-width:900px; 
-margin:auto; 
-} 
+section{
+  padding:60px;
+  max-width:900px;
+  margin:auto;
+}
 
-.galeria{ 
-display: grid; 
-grid-template-columns: repeat(2, 1fr); 
-gap:20px; 
-} 
+/* GALERIA */
+.galeria{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:20px;
+}
 
-.galeria img{ 
-width:100%; 
-height:400px; 
-object-fit:cover; 
-} 
+.galeria img{
+  width:100%;
+  height:400px;
+  object-fit:contain;
+  cursor:pointer;
+}
 
-.descripcion{ 
-margin-bottom:40px; 
-line-height:1.6; 
-} 
+/* TEXTO */
+.descripcion{
+  margin-bottom:40px;
+  line-height:1.6;
+}
 
-footer{ 
-text-align:center; 
-font-size:12px; 
-color:gray; 
-padding:20px 0; 
-border-top:1px solid #eee; 
-} 
+/* VISOR */
+.viewer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
 
-footer{ 
-text-align:center; 
-font-size:12px; 
-color:gray; 
-padding:20px 0; 
-border-top:1px solid #eee; 
-margin-top:40px; 
-} 
-  
-</style> 
+.viewer img{
+  max-width:80%;
+  max-height:80%;
+}
 
-</head> 
+.boton{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+  padding:20px;
+}
 
-<body> 
+.prev{ left:20px; }
+.next{ right:20px; }
 
-<header> 
+.cerrar{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color:white;
+  cursor:pointer;
+}
 
-<h1>Carolina Hernández Esguep</h1> 
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:12px;
+  color:gray;
+  padding:20px 0;
+  border-top:1px solid #eee;
+  margin-top:40px;
+}
 
-<nav> 
-<a href="index.html">Inicio</a> 
-<a href="obras.html">Obras</a> 
-<a href="pedagogia.html">Pedagogía</a> 
-<a href="trayectoria.html">Trayectoria</a> 
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Carolina Hernández Esguep</h1>
+
+<nav>
+<a href="index.html">Inicio</a>
+<a href="obras.html">Obras</a>
+<a href="pedagogia.html">Pedagogía</a>
+<a href="trayectoria.html">Trayectoria</a>
 <a href="referentes.html">Referentes</a>  
-<a href="contacto.html">Contacto</a> 
-</nav> 
+<a href="contacto.html">Contacto</a>
+</nav>
 
-</header> 
+</header>
 
-<section> 
+<section>
 
-<h2>Proyección sobre objeto</h2> 
+<h2>Proyección sobre objeto</h2>
 
-<div class="descripcion"> 
-<p> 
-Serie que explora la interacción entre la proyección de imágenes y objetos tridimensionales, creando una experiencia visual única. 
-</p> 
-</div> 
+<div class="descripcion">
+<p>
+Serie que explora la interacción entre la proyección de imágenes y objetos tridimensionales, creando una experiencia visual única.
+</p>
+</div>
 
-<div class="galeria"> 
-<img src="sobreobjetos.jpg" alt="Proyección sobre objeto"> 
-<img src="proyeccion.jpg" alt="Proyección sobre objeto"> 
-</div> 
+<div class="galeria">
+  <img src="sobreobjetos.jpg" alt="Proyección sobre objeto">
+  <img src="proyeccion.jpg" alt="Proyección sobre objeto">
+</div>
 
-</section> 
+</section>
 
-<footer> 
-Carolina Hernández Esguep - Artista Visual 
-</footer> 
+<footer>
+Carolina Hernández Esguep - Artista Visual
+</footer>
 
 <script>
 
 const images = document.querySelectorAll('.galeria img');
 let currentIndex = 0;
 
+/* VISOR */
 const viewer = document.createElement('div');
-viewer.style.position = 'fixed';
-viewer.style.top = 0;
-viewer.style.left = 0;
-viewer.style.width = '100%';
-viewer.style.height = '100%';
-viewer.style.background = 'rgba(0,0,0,0.9)';
-viewer.style.display = 'none';
-viewer.style.alignItems = 'center';
-viewer.style.justifyContent = 'center';
+viewer.className = 'viewer';
 
 const img = document.createElement('img');
-img.style.maxWidth = '80%';
-img.style.maxHeight = '80%';
 
-/* FLECHAS */
 const prev = document.createElement('div');
+prev.className = 'boton prev';
 prev.innerHTML = '←';
-prev.style.position = 'absolute';
-prev.style.left = '20px';
-prev.style.top = '50%';
-prev.style.transform = 'translateY(-50%)';
-prev.style.fontSize = '40px';
-prev.style.color = 'white';
-prev.style.cursor = 'pointer';
 
 const next = document.createElement('div');
+next.className = 'boton next';
 next.innerHTML = '→';
-next.style.position = 'absolute';
-next.style.right = '20px';
-next.style.top = '50%';
-next.style.transform = 'translateY(-50%)';
-next.style.fontSize = '40px';
-next.style.color = 'white';
-next.style.cursor = 'pointer';
+
+const cerrar = document.createElement('div');
+cerrar.className = 'cerrar';
+cerrar.innerHTML = '✕';
 
 viewer.appendChild(img);
 viewer.appendChild(prev);
 viewer.appendChild(next);
+viewer.appendChild(cerrar);
 
 document.body.appendChild(viewer);
+
+/* MOSTRAR */
+function mostrarImagen(index){
+  img.src = images[index].src;
+}
 
 /* CLICK */
 images.forEach((image, index) => {
   image.addEventListener('click', () => {
     currentIndex = index;
-    img.src = image.src;
     viewer.style.display = 'flex';
+    mostrarImagen(currentIndex);
   });
 });
 
 /* BOTONES */
 next.onclick = () => {
   currentIndex = (currentIndex + 1) % images.length;
-  img.src = images[currentIndex].src;
+  mostrarImagen(currentIndex);
 };
 
 prev.onclick = () => {
   currentIndex = (currentIndex - 1 + images.length) % images.length;
-  img.src = images[currentIndex].src;
+  mostrarImagen(currentIndex);
 };
 
 /* TECLADO */
@@ -184,11 +209,12 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* CERRAR */
-viewer.addEventListener('click', () => {
-  viewer.style.display = 'none';
-});
+cerrar.onclick = () => viewer.style.display = 'none';
+viewer.onclick = (e) => {
+  if(e.target === viewer) viewer.style.display = 'none';
+};
 
 </script>
 
-</body> 
+</body>
 </html>
