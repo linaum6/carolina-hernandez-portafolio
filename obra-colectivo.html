@@ -93,6 +93,10 @@ gap:30px;
 text-align:center;
 }
 
+.serie-talca{
+align-self:start;
+}
+
 .serie p{
 min-height:70px;
 }
@@ -266,7 +270,7 @@ Galería BECH (2001)
 
 </div>
 
-<div class="serie">
+<div class="serie serie-talca">
 <p><strong>"Este mensaje no está marcado por una bandera" (2004)</strong></p>
 <p>Centro de extensión de la Universidad de Talca</p>
 
@@ -279,105 +283,3 @@ Galería BECH (2001)
 </div>
 
 </section>
-
-<div id="lightbox" class="lightbox">
-
-<span class="cerrar" onclick="cerrarGaleria()">×</span>
-
-<span class="flecha izquierda" onclick="cambiarImagen(-1)">❮</span>
-
-<img id="imagen-grande">
-
-<span class="flecha derecha" onclick="cambiarImagen(1)">❯</span>
-
-</div>
-
-<footer>
-Carolina Hernández Esguep - Artista Visual
-</footer>
-
-<script>
-
-let imagenes = [
-
-"hoffmanhouse.jpg",
-
-"rojo1.jpg",
-"rojo2.jpg",
-"rojo3.jpg",
-
-"imagen1.jpg",
-"imagen2.jpg",
-
-"colectivo1.jpg",
-"colectivo2.jpg",
-"colectivo3.jpg",
-"colectivo5.jpg",
-"colectivo6.jpg",
-"colectivo7.jpg",
-"colectivo8.jpg",
-"colectivo9.jpg",
-"colectivo10.jpg",
-"colectivo11.jpg",
-"colectivo12.jpg",
-
-"colectivo13.jpg",
-"colectivo14.jpg",
-"colectivo15.jpg",
-
-"paja1.jpg",
-"paja2.jpg",
-"paja3.jpg",
-"paja4.jpg",
-"paja5.jpg",
-"paja6.jpg",
-"paja7.jpg"
-
-];
-
-let imagenActual = 0;
-
-function abrirGaleria(index){
-document.getElementById("lightbox").style.display="block";
-imagenActual = index;
-document.getElementById("imagen-grande").src = imagenes[imagenActual];
-}
-
-function cerrarGaleria(){
-document.getElementById("lightbox").style.display="none";
-}
-
-function cambiarImagen(direccion){
-imagenActual += direccion;
-
-if(imagenActual < 0){
-imagenActual = imagenes.length -1;
-}
-
-if(imagenActual >= imagenes.length){
-imagenActual = 0;
-}
-
-document.getElementById("imagen-grande").src = imagenes[imagenActual];
-}
-
-document.addEventListener("keydown", function(e){
-
-if(e.key === "Escape"){
-cerrarGaleria();
-}
-
-if(e.key === "ArrowRight"){
-cambiarImagen(1);
-}
-
-if(e.key === "ArrowLeft"){
-cambiarImagen(-1);
-}
-
-});
-
-</script>
-
-</body>
-</html>
