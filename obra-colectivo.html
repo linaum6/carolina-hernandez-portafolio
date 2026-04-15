@@ -37,39 +37,26 @@ display:block;
 margin:30px auto;
 }
 
-.descripcion{
-margin-bottom:40px;
-line-height:1.6;
-}
-
 /* EJERCICIOS */
 
 .ejercicios{
 display:grid;
 grid-template-columns: repeat(3, 1fr);
 gap:30px;
-margin-top:30px;
-align-items:start;
 }
 
 .ejercicio{
 text-align:center;
 }
 
-.ejercicio p{
-min-height:120px;
-}
-
 .ejercicio img{
 width:100%;
-margin-top:15px;
 cursor:pointer;
-transition:0.3s;
 }
 
-.ejercicio img:hover{
-opacity:0.8;
-}
+.ejercicio img:not(:first-of-type){
+display:none;
+}  
 
 /* SERIES */
 
@@ -78,24 +65,17 @@ display:grid;
 grid-template-columns: 2fr 1fr;
 gap:40px;
 margin-top:40px;
-align-items:start;
-}
-
-.series > div{
-display:flex;
-flex-direction:column;
 }
 
 .series h3{
 min-height:60px;
 }
 
-/* línea alineada debajo de títulos */
-.series-2003,
-.series .serie{
+/* línea */
+.linea{
 border-top:1px solid #eee;
-padding-top:20px;
-margin-top:15px;
+margin:15px 0;
+padding-top:15px;
 }
 
 .series-2003{
@@ -110,19 +90,19 @@ text-align:center;
 
 .serie img{
 width:100%;
-margin-top:15px;
 cursor:pointer;
 }
-
-/* CONTADOR */
+  
+.serie img:not(:first-of-type){
+display:none;
+}  
 
 .contador{
 font-size:14px;
 color:gray;
-margin-top:5px;
 }
 
-/* VISOR GALERÍA */
+/* VISOR */
 
 .viewer{
 position:fixed;
@@ -179,7 +159,6 @@ border-top:1px solid #eee;
 <body>
 
 <header>
-
 <h1>Carolina Hernández Esguep</h1>
 
 <nav>
@@ -190,52 +169,31 @@ border-top:1px solid #eee;
 <a href="referentes.html">Referentes</a>  
 <a href="contacto.html">Contacto</a>
 </nav>
-
 </header>
 
 <section>
 
 <h2>Colectivo "P/a"</h2>
 
-<div class="descripcion">
-
-<p>
-Su nombre proviene del proceso productivo de taller, haciendo alusión a las pruebas de Artista o pruebas de autor, P/a.  
-Tiene como objetivo principal trabajar desde el no protagonismo de sus integrantes.
-</p>
-
-<p><strong>Temas específicos:</strong> intervenciones urbanas en la Ciudad y sus límites.</p>
-
-<img src="colectivo4.jpg" alt="Colectivo P/a">
-
-</div>
-
 <div class="ejercicios">
 
 <div class="ejercicio">
-<p>
-<strong>Ejercicio n°1</strong><br>
-Proyecto "Hoffmann's House"<br>
-Galería Metropolitana (2001)
-</p>
+<p><strong>Ejercicio n°1</strong></p>
 <img src="hoffmanhouse.jpg">
 </div>
 
 <div class="ejercicio">
-<p>
-<strong>Ejercicio n°2</strong><br>
-Galería Metropolitana (2001)
-</p>
+<p><strong>Ejercicio n°2</strong></p>
 <img src="rojo1.jpg">
+<img src="rojo2.jpg">
+<img src="rojo3.jpg">
 <p class="contador">1 / 3</p>
 </div>
 
 <div class="ejercicio">
-<p>
-<strong>Ejercicio n°3</strong><br>
-Galería BECH (2001)
-</p>
+<p><strong>Ejercicio n°3</strong></p>
 <img src="imagen1.jpg">
+<img src="imagen2.jpg"> 
 <p class="contador">1 / 2</p>
 </div>
 
@@ -245,22 +203,36 @@ Galería BECH (2001)
 
 <div class="series">
 
-<!-- IZQUIERDA -->
+<!-- 2003 -->
 <div>
 
 <h3><strong>"This message is not flagged" (2003)</strong></h3>
+
+<div class="linea">
 
 <div class="series-2003">
 
 <div class="serie">
 <p>Ekeby qvarn art space - Uppsala, Suecia</p>
 <img src="colectivo10.jpg">
+<img src="colectivo1.jpg">
+<img src="colectivo2.jpg">
+<img src="colectivo3.jpg">
+<img src="colectivo5.jpg">  
+<img src="colectivo6.jpg">
+<img src="colectivo7.jpg">
+<img src="colectivo8.jpg">
+<img src="colectivo9.jpg">
+<img src="colectivo11.jpg">
+<img src="colectivo12.jpg">
 <p class="contador">1 / 11</p>
 </div>
 
 <div class="serie">
 <p>Museo de arte contemporáneo de Bochum - Alemania</p>
 <img src="colectivo13.jpg">
+<img src="colectivo14.jpg">  
+<img src="colectivo15.jpg">  
 <p class="contador">1 / 3</p>
 </div>
 
@@ -268,16 +240,22 @@ Galería BECH (2001)
 
 </div>
 
-<!-- DERECHA -->
+</div>
+
+<!-- 2004 -->
 <div>
 
 <h3><strong>"Este mensaje no está marcado por una bandera" (2004)</strong></h3>
+
+<div class="linea">
 
 <p>Centro de extensión de la Universidad de Talca</p>
 
 <div class="serie">
 <img src="paja1.jpg">
 <p class="contador">1 / 7</p>
+</div>
+
 </div>
 
 </div>
@@ -292,9 +270,16 @@ Carolina Hernández Esguep - Artista Visual
 
 <script>
 
-const images = document.querySelectorAll('.serie img, .ejercicio img');
-let currentIndex = 0;
+/* GALERÍA 1 - EJERCICIOS */
+const galeria1 = document.querySelectorAll('.ejercicio img');
 
+/* GALERÍA 2 - SERIES */
+const galeria2 = document.querySelectorAll('.serie img');
+
+let currentIndex = 0;
+let currentGallery = [];
+
+/* VISOR */
 const viewer = document.createElement('div');
 viewer.className = 'viewer';
 
@@ -319,26 +304,37 @@ viewer.appendChild(cerrar);
 
 document.body.appendChild(viewer);
 
-function mostrarImagen(index){
-img.src = images[index].src;
-}
-
-images.forEach((image, index) => {
-image.addEventListener('click', () => {
+function abrirGaleria(galeria, index){
+currentGallery = galeria;
 currentIndex = index;
 viewer.style.display = 'flex';
-mostrarImagen(currentIndex);
-});
+mostrarImagen();
+}
+
+function mostrarImagen(){
+img.src = currentGallery[currentIndex].src;
+}
+
+/* EVENTOS */
+
+galeria1.forEach((image, index) => {
+image.onclick = () => abrirGaleria(galeria1, index);
 });
 
+galeria2.forEach((image, index) => {
+image.onclick = () => abrirGaleria(galeria2, index);
+});
+
+/* CONTROLES */
+
 next.onclick = () => {
-currentIndex = (currentIndex + 1) % images.length;
-mostrarImagen(currentIndex);
+currentIndex = (currentIndex + 1) % currentGallery.length;
+mostrarImagen();
 };
 
 prev.onclick = () => {
-currentIndex = (currentIndex - 1 + images.length) % images.length;
-mostrarImagen(currentIndex);
+currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+mostrarImagen();
 };
 
 document.addEventListener('keydown', (e) => {
